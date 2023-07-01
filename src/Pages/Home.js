@@ -1,5 +1,6 @@
 import { Modal } from "@mui/material";
 import { v4 as uuid } from "uuid";
+import { NavLink } from "react-router-dom";
 import { useRecipeContext } from "../Context/RecipesContext";
 import { useState } from "react";
 export const Home = () => {
@@ -53,7 +54,10 @@ export const Home = () => {
               <img src={item?.imgUrl} className="w-[10rem] h-[10rem]" />
               <p>name - {item?.name}</p>
               <p>cuisine - {item?.cuisine}</p>
-              <p>ingredients - {item?.ingredients}</p>
+              <p>
+                ingredients -{" "}
+                <NavLink to={`/recipeDetail/${item.id}`}>see more</NavLink>
+              </p>
               <p>instructions - {item?.instructions}</p>
               <button
                 className="border border-solid border-blue-500 p-2"
