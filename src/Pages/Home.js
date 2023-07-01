@@ -9,12 +9,28 @@ export const Home = () => {
   const { recipe, dispatch } = useRecipeContext();
   const [editData, setEditData] = useState({});
   const [addRecipe, setAddRecipe] = useState({});
+  const [filter, setFilter] = useState("name");
+  const [search, setSearch] = useState("");
 
   const openEditModal = () => setShowEditModal(true);
   const closeEditModal = () => setShowEditModal(false);
 
   const openAddModal = () => setAddModal(true);
   const closeAddModal = () => setAddModal(false);
+
+  const filterData =
+    search?.length > 0 && filter === "name"
+      ? recipe?.filter((item) =>
+          item?.name?.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+      : recipe;
+
+  const filterDataByCuisine =
+    search?.length > 0 && filter === "cuisine"
+      ? filterData?.filter((item) =>
+          item?.cuisine?.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+      : filterData;
 
   const style = {
     position: "absolute",
@@ -27,6 +43,7 @@ export const Home = () => {
     boxShadow: 24,
     p: 4,
   };
+
   return (
     <div className="mt-8 flex flex-col items-center gap-8">
       <div className=" flex gap-4 justify-center">
@@ -34,18 +51,34 @@ export const Home = () => {
           type="text"
           placeholder="search-recipe"
           className="border border-solid border-blue-500 rounded-[1rem] px-4"
+          onChange={(e) => setSearch(e.target.value)}
         />
         <div className=" flex gap-4 justify-center">
           <label>
-            <input type="radio" name="search-recipe" />
+            <input
+              type="radio"
+              name="search-recipe"
+              value="name"
+              onChange={(e) => setFilter(e.target.value)}
+            />
             Name
           </label>
           <label>
-            <input type="radio" name="search-recipe" />
+            <input
+              type="radio"
+              name="search-recipe"
+              value="cuisine"
+              onChange={(e) => setFilter(e.target.value)}
+            />
             Cuisine
           </label>{" "}
           <label>
-            <input type="radio" name="search-recipe" />
+            <input
+              type="radio"
+              name="search-recipe"
+              value="incredients"
+              onChange={(e) => setFilter(e.target.value)}
+            />
             Incredients
           </label>{" "}
         </div>
@@ -60,7 +93,7 @@ export const Home = () => {
       </button>
       <div>
         <ul className="flex justify-center gap-4">
-          {recipe?.map((item) => (
+          {filterDataByCuisine?.map((item) => (
             <li className=" flex flex-col gap-4 shadow-lg p-4 rounded-[1rem]">
               <img
                 src={item?.imgUrl}
