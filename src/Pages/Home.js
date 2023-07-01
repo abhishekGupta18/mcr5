@@ -49,9 +49,15 @@ export const Home = () => {
             Incredients
           </label>{" "}
         </div>
-        <button onClick={() => openAddModal()}>Add Recipe</button>
       </div>
+
       <p className="text-2xl text-center">List of recipes </p>
+      <button
+        className="text-xl text-center border border-solid border-blue-400 rounded-[1rem] py-1 px-2 "
+        onClick={() => openAddModal()}
+      >
+        Add Recipe
+      </button>
       <div>
         <ul className="flex justify-center gap-4">
           {recipe?.map((item) => (
