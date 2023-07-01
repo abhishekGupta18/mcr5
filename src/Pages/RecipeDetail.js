@@ -7,12 +7,14 @@ export const RecipeDetail = () => {
   const findRecipe = recipe?.find((item) => item.id === Number(recipeId));
   console.log(findRecipe);
   return (
-    <div>
-      <p>{findRecipe?.name}</p>
-      <img src={findRecipe?.imgUrl} className="w-[10rem] h-[10rem]" />
-      <p> cuisine - {findRecipe?.cuisine}</p>
-      <p> ingredients - {findRecipe?.ingredients}</p>
-      <p> instructions - {findRecipe?.instructions}</p>
+    <div className=" w-full flex justify-center items-center gap-8">
+      <img src={findRecipe?.imgUrl} className="w-[20rem] h-[20rem]" />
+      <div>
+        <p>{findRecipe?.name}</p>
+        <p> cuisine - {findRecipe?.cuisine}</p>
+        <p> ingredients - {findRecipe?.ingredients}</p>
+        <p> instructions - {findRecipe?.instructions}</p>
+      </div>
     </div>
   );
 };

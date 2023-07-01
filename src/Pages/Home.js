@@ -28,39 +28,55 @@ export const Home = () => {
     p: 4,
   };
   return (
-    <div>
-      <div>
-        <input type="text" className="border border-solid border-blue-500" />
-        <div>
+    <div className="mt-8 flex flex-col items-center gap-8">
+      <div className=" flex gap-4 justify-center">
+        <input
+          type="text"
+          placeholder="search-recipe"
+          className="border border-solid border-blue-500 rounded-[1rem] px-4"
+        />
+        <div className=" flex gap-4 justify-center">
           <label>
-            <input type="checkbox" />
+            <input type="radio" name="search-recipe" />
             Name
           </label>
           <label>
-            <input type="checkbox" />
+            <input type="radio" name="search-recipe" />
             Cuisine
           </label>{" "}
           <label>
-            <input type="checkbox" />
+            <input type="radio" name="search-recipe" />
             Incredients
           </label>{" "}
         </div>
         <button onClick={() => openAddModal()}>Add Recipe</button>
       </div>
+      <p className="text-2xl text-center">List of recipes </p>
       <div>
-        <ul>
+        <ul className="flex justify-center gap-4">
           {recipe?.map((item) => (
-            <li>
-              <img src={item?.imgUrl} className="w-[10rem] h-[10rem]" />
-              <p>name - {item?.name}</p>
-              <p>cuisine - {item?.cuisine}</p>
+            <li className=" flex flex-col gap-4 shadow-lg p-4 rounded-[1rem]">
+              <img
+                src={item?.imgUrl}
+                className="w-[10rem] h-[10rem] rounded-[1rem]"
+              />
               <p>
-                ingredients -{" "}
+                <strong>name </strong> - {item?.name}
+              </p>
+              <p>
+                {" "}
+                <strong>cuisine </strong> - {item?.cuisine}
+              </p>
+              <p>
+                <strong>ingredients </strong> -{" "}
                 <NavLink to={`/recipeDetail/${item.id}`}>see more</NavLink>
               </p>
-              <p>instructions - {item?.instructions}</p>
+              <p>
+                <strong>instructions</strong> -{" "}
+                <NavLink to={`/recipeDetail/${item.id}`}>see more</NavLink>{" "}
+              </p>
               <button
-                className="border border-solid border-blue-500 p-2"
+                className="  px-2 border border-solid border-black rounded-[1rem] mr-8"
                 onClick={() => {
                   openEditModal();
                   setEditData(item);
@@ -69,7 +85,7 @@ export const Home = () => {
                 edit
               </button>
               <button
-                className="border border-solid border-blue-500 p-2"
+                className="  px-2 border border-solid border-black rounded-[1rem] mr-8"
                 onClick={() =>
                   dispatch({ type: "delete_recipe", payload: item.id })
                 }
