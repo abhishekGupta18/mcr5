@@ -7,6 +7,7 @@ export default {
     },
     extend: {},
     colors: {
+      white: "#ffff",
       blue: {
         50: "#eff6ff",
         100: "#dbeafe",

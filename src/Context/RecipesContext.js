@@ -6,6 +6,12 @@ const recipeReducer = (state, action) => {
   switch (action.type) {
     case "delete_recipe":
       return state?.filter((item) => item.id !== action.payload);
+    case "edit_recipe":
+      return state?.map((item) =>
+        item?.id === action.payload.id ? action.payload : item
+      );
+    case "add_recipe":
+      return [...state, action.payload];
   }
 };
 export const RecipeContextProvider = ({ children }) => {
